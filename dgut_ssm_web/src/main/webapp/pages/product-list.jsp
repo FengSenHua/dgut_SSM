@@ -252,10 +252,10 @@
 											<td>${product.productNum }</td>
 											<td>${product.productName }</td>
 											<td>${product.cityName }</td>
-											<td>${product.departureTime}</td>
+											<td>${product.departureTimeStr}</td>
 											<td class="text-center">${product.productPrice }</td>
 											<td>${product.productDesc }</td>
-											<td class="text-center">${product.productStatusStr }</td>
+											<td class="text-center">${product.productStatusStr}</td>
 											<td class="text-center">
 												<button type="button" class="btn bg-olive btn-xs">订单</button>
 												<button type="button" class="btn bg-olive btn-xs">详情</button>
@@ -282,7 +282,7 @@
 								<div class="form-group form-inline">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default" title="新建">
-											<i class="fa fa-file-o"></i> 新建
+											<i class="fa fa-file-o" onclick="location.href='${pageContext.request.contextPath}/pages/product-add.jsp'"></i> 新建
 										</button>
 										<button type="button" class="btn btn-default" title="删除">
 											<i class="fa fa-trash-o"></i> 删除
@@ -483,12 +483,12 @@
 			// 激活导航位置
 			setSidebarActive("admin-datalist");
 
-			// 列表按钮 
+			// 列表按钮
 			$("#dataList td input[type='checkbox']").iCheck({
 				checkboxClass : 'icheckbox_square-blue',
 				increaseArea : '20%'
 			});
-			// 全选操作 
+			// 全选操作
 			$("#selall").click(function() {
 				var clicks = $(this).is(':checked');
 				if (!clicks) {

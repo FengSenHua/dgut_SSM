@@ -29,4 +29,11 @@ public class ProductController {
 
         return mv;
     }
+
+    //产品添加
+    @RequestMapping("/saveProduct.do")
+    public String save(Product product){
+        productService.saveProduct(product);
+        return "redirect:findAll.do";
+    }
 }
