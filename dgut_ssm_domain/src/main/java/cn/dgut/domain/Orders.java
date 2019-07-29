@@ -133,6 +133,13 @@ public class Orders {
     }
 
     public String getPayTypeStr() {
+        //支付方式(0 支付宝 1 微信 2其它)
+        if(payType!=null){
+            if(payType==0)
+                payTypeStr="支付宝";
+            if(payType==1)
+                payTypeStr="微信";
+        }
         return payTypeStr;
     }
 
