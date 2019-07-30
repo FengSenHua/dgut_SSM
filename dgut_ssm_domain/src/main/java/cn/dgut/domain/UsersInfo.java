@@ -57,6 +57,13 @@ public class UsersInfo {
     }
 
     public int getStatus() {
+        if(statusStr!=null){
+            if(statusStr.equals("关闭")){
+                status=0;
+            }else {
+                status=1;
+            }
+        }
         return status;
     }
 
@@ -65,6 +72,11 @@ public class UsersInfo {
     }
 
     public String getStatusStr() {
+        //状态0 未开启 1 开启
+        if(status==0)
+            statusStr="未开启";
+        if (status==1)
+            statusStr="开启";
         return statusStr;
     }
 
