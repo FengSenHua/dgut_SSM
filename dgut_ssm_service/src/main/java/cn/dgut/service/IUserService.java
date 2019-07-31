@@ -1,5 +1,6 @@
 package cn.dgut.service;
 
+import cn.dgut.domain.Role;
 import cn.dgut.domain.UsersInfo;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -11,5 +12,9 @@ public interface IUserService extends UserDetailsService {
 
     void save(UsersInfo usersInfo);
 
-    UsersInfo findUserByIdAndAllRole(String id);
+    UsersInfo findById(String id);
+
+    List<Role> findOtherRoles(String userId);
+
+    void addRoleToUser(String userId, String[] roleIds);
 }
