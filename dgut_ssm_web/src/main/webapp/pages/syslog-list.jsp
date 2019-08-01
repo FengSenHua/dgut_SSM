@@ -79,15 +79,15 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                用户管理 <small>全部用户</small>
+                日志管理 <small>全部日志</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/index.jsp"><i
                         class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a
-                        href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
+                        href="${pageContext.request.contextPath}/syslog/findAll.do">日志管理</a></li>
 
-                <li class="active">全部用户</li>
+                <li class="active">全部日志</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -136,22 +136,28 @@
                                         id="selall" type="checkbox" class="icheckbox_square-blue">
                                 </th>
                                 <th class="sorting_asc">ID</th>
-                                <th class="sorting_desc">角色名</th>
-                                <th class="sorting">描述</th>
-                                <th class="text-center">操作</th>
+                                <th class="sorting_desc">访问时间</th>
+                                <th class="sorting">访问用户名</th>
+                                <th class="text-center">访问IP</th>
+                                <th class="text-center">访问URL</th>
+                                <th class="text-center">执行时长</th>
+                                <th class="text-center">执行方法</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            <c:forEach items="${roles}" var="role">
+                            <c:forEach items="${sysLogList}" var="syslog">
                                 <tr>
                                     <td><input name="ids" type="checkbox"></td>
-                                    <td>${role.id }</td>
-                                    <td>${role.roleName}</td>
-                                    <td>${role.roleDesc}</td>
-                                    <td class="text-center">
-                                        <a href="${pageContext.request.contextPath}/role/findRoleByIdAndAllPermission.do?roleId=${role.id}" class="btn bg-olive btn-xs">添加权限</a>
-                                    </td>
+                                    <td>${syslog.id}</td>
+                                    <td>${syslog.visitTimeStr}</td>
+                                    <td>${syslog.username}</td>
+                                    <td>${syslog.ip}</td>
+                                    <td>${syslog.url}</td>
+                                    <td>${syslog.executionTime}</td>
+                                    <td>${syslog.method}</td>
+
+
                                 </tr>
                             </c:forEach>
                             </tbody>

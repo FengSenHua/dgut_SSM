@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -79,22 +80,26 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                角色管理 <small>角色表单</small>
+                角色管理 <small>添加权限表单</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/index.jsp"><i
                         class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="${pageContext.request.contextPath}/role/findAll.do">权限管理</a></li>
-                <li class="active">权限表单</li>
+                <li><a
+                        href="${pageContext.request.contextPath}/role/findAll.do">角色管理</a></li>
+                <li class="active">添加权限表单</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
 
-        <form action="${pageContext.request.contextPath}/role/addPermissionToRole.do"
-              method="post">
+        <form
+                action="${pageContext.request.contextPath}/role/addPermissionToRole.do"
+                method="post">
             <!-- 正文区域 -->
-            <section class="content"> <!--产品信息-->
+            <section class="content">
+
                 <input type="hidden" name="roleId" value="${role.id}">
+
                 <table id="dataList"
                        class="table table-bordered table-striped table-hover dataTable">
                     <thead>
@@ -104,18 +109,21 @@
                                    type="checkbox" class="icheckbox_square-blue"></th>
                         <th class="sorting_asc">ID</th>
                         <th class="sorting">权限名称</th>
-                        <th class="sorting">权限访问路径</th>
+                        <th class="sorting">权限URL</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${permissionList}" var="permission">
                         <tr>
                             <td>
-                                <input name="permissionId" type="checkbox" value="${permission.id}">
+
+                                <input name="ids" type="checkbox" value="${permission.id}">
+
                             </td>
                             <td>${permission.id}</td>
-                            <td>${permission.permissionName}</td>
+                            <td>${permission.permissionName }</td>
                             <td>${permission.url}</td>
+
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -241,6 +249,16 @@
         $(".textarea").wysihtml5({
             locale : 'zh-CN'
         });
+        // 全选操作
+        $("#selall").click(function() {
+            var clicks = $(this).is(':checked');
+            if (!clicks) {
+                $("#dataList td input[type='checkbox']").iCheck("uncheck");
+            } else {
+                $("#dataList td input[type='checkbox']").iCheck("check");
+            }
+            $(this).data("clicks", !clicks);
+        });
     });
 
     // 设置激活菜单
@@ -251,7 +269,6 @@
             liObj.addClass("active");
         }
     }
-
 </script>
 
 
